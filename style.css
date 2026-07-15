@@ -146,3 +146,35 @@ cursor:pointer;
 button:hover{
 background:#cc7700;
 }
+/* WhatsApp Button */
+.whatsapp{
+position:fixed;
+right:20px;
+bottom:20px;
+width:60px;
+height:60px;
+background:#25D366;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+text-decoration:none;
+color:#fff;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+z-index:999;
+}
+
+.whatsapp:hover{
+transform:scale(1.1);
+transition:.3s;
+}
+
+/* Footer */
+footer{
+background:#000;
+text-align:center;
+padding:20px;
+margin-top:50px;
+color:#aaa;
+}
