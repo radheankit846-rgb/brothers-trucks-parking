@@ -1,30 +1,77 @@
-// Brothers Premium Parking
+// Smooth scroll for navigation links
 
-document.addEventListener("DOMContentLoaded", () => {
+document.querySelectorAll('nav a').forEach(link => {
 
-    console.log("Brothers Premium Parking Loaded");
+link.addEventListener('click', function(e){
 
-    const button = document.querySelector(".btn");
+e.preventDefault();
 
-    if (button) {
-        button.addEventListener("click", () => {
-            alert("Thank you! Your booking request has been received.");
-        });
-    }
+const target = document.querySelector(this.getAttribute('href'));
 
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-        link.addEventListener("click", function(e) {
-            e.preventDefault();
+target.scrollIntoView({
 
-            const target = document.querySelector(this.getAttribute("href"));
-
-            if (target) {
-                target.scrollIntoView({
-                    behavior: "smooth"
-                });
-            }
-        });
-    });
+behavior: 'smooth'
 
 });
+
+});
+
+});
+
+// Fade-in animation on scroll
+
+const sections = document.querySelectorAll('.section');
+
+function revealSections(){
+
+sections.forEach(section=>{
+
+const top = section.getBoundingClientRect().top;
+
+const screen = window.innerHeight;
+
+if(top < screen - 100){
+
+section.style.opacity = "1";
+
+section.style.transform = "translateY(0)";
+
+}
+
+});
+
+}
+
+sections.forEach(section=>{
+
+section.style.opacity = "0";
+
+section.style.transform = "translateY(40px)";
+
+section.style.transition = "all 0.8s ease";
+
+});
+
+window.addEventListener("scroll", revealSections);
+
+revealSections();
+
+// Hero button effect
+
+const btn = document.querySelector(".btn");
+
+if(btn){
+
+btn.addEventListener("mouseenter",()=>{
+
+btn.style.transform="scale(1.05)";
+
+});
+
+btn.addEventListener("mouseleave",()=>{
+
+btn.style.transform="scale(1)";
+
+});
+
+}
