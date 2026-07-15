@@ -1,77 +1,47 @@
-// Smooth scroll for navigation links
+// Smooth scroll
 
 document.querySelectorAll('nav a').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
 
-link.addEventListener('click', function(e){
-
-e.preventDefault();
-
-const target = document.querySelector(this.getAttribute('href'));
-
-target.scrollIntoView({
-
-behavior: 'smooth'
-
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
 });
 
+// Fade Animation
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
 });
 
+document.querySelectorAll("section,.card").forEach(el=>{
+  el.classList.add("hidden");
+  observer.observe(el);
 });
 
-// Fade-in animation on scroll
+// Hero Background Slider
 
-const sections = document.querySelectorAll('.section');
+const images = [
+"images/hero.jpg",
+"images/1.jpg",
+"images/2.jpg",
+"images/3.jpg",
+"images/4.jpg"
+];
 
-function revealSections(){
+let i = 0;
 
-sections.forEach(section=>{
+setInterval(() => {
+  i++;
+  if(i >= images.length) i = 0;
 
-const top = section.getBoundingClientRect().top;
+  document.querySelector(".hero").style.backgroundImage =
+  `url(${images[i]})`;
 
-const screen = window.innerHeight;
-
-if(top < screen - 100){
-
-section.style.opacity = "1";
-
-section.style.transform = "translateY(0)";
-
-}
-
-});
-
-}
-
-sections.forEach(section=>{
-
-section.style.opacity = "0";
-
-section.style.transform = "translateY(40px)";
-
-section.style.transition = "all 0.8s ease";
-
-});
-
-window.addEventListener("scroll", revealSections);
-
-revealSections();
-
-// Hero button effect
-
-const btn = document.querySelector(".btn");
-
-if(btn){
-
-btn.addEventListener("mouseenter",()=>{
-
-btn.style.transform="scale(1.05)";
-
-});
-
-btn.addEventListener("mouseleave",()=>{
-
-btn.style.transform="scale(1)";
-
-});
-
-}
+}, 4000);
