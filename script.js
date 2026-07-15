@@ -28,11 +28,13 @@ document.querySelectorAll("section,.card").forEach(el=>{
 // Hero Background Slider
 
 const images = [
-"images/hero.jpg",
-"images/1.jpg",
-"images/2.jpg",
-"images/3.jpg",
-"images/4.jpg"
+"parking1.jpg",
+"parking2.jpg",
+"parking3.jpg",
+"parking4.jpg",
+"parking5.jpg",
+"parking6.jpg",
+"parking7.jpg"
 ];
 
 let i = 0;
