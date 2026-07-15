@@ -1,49 +1,47 @@
-// Smooth scroll
+// Brothers Truck Parking Premium Website
 
-document.querySelectorAll('nav a').forEach(link => {
-  link.addEventListener('click', function(e) {
-    e.preventDefault();
+// Sticky Header Effect
+window.addEventListener("scroll", function () {
+    const header = document.querySelector("header");
 
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
-
-// Fade Animation
-
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("show");
+    if (window.scrollY > 50) {
+        header.style.background = "rgba(0,0,0,0.95)";
+        header.style.boxShadow = "0 5px 20px rgba(0,0,0,0.4)";
+    } else {
+        header.style.background = "rgba(0,0,0,0.85)";
+        header.style.boxShadow = "none";
     }
-  });
 });
 
-document.querySelectorAll("section,.card").forEach(el=>{
-  el.classList.add("hidden");
-  observer.observe(el);
+// Smooth Fade-in Animation
+const sections = document.querySelectorAll("section");
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = "1";
+            entry.target.style.transform = "translateY(0)";
+        }
+    });
+}, {
+    threshold: 0.15
 });
 
-// Hero Background Slider
+sections.forEach((section) => {
+    section.style.opacity = "0";
+    section.style.transform = "translateY(40px)";
+    section.style.transition = "all 0.8s ease";
+    observer.observe(section);
+});
 
-const images = [
-"parking1.jpg",
-"parking2.jpg",
-"parking3.jpg",
-"parking4.jpg",
-"parking5.jpg",
-"parking6.jpg",
-"parking7.jpg"
-];
+// Gallery Image Click Effect
+const images = document.querySelectorAll(".gallery img");
 
-let i = 0;
+images.forEach((img) => {
+    img.addEventListener("click", () => {
+        window.open(img.src, "_blank");
+    });
+});
 
-setInterval(() => {
-  i++;
-  if(i >= images.length) i = 0;
-
-  document.querySelector(".hero").style.backgroundImage =
-  `url(${images[i]})`;
-
-}, 4000);
+// Console Message
+console.log("Brothers Truck Parking Website Loaded Successfully");
